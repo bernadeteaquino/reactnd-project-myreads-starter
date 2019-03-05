@@ -11,6 +11,11 @@ body {
 body,
 .app {
   background: white;
+  height: 100%;
+}
+
+._loading_overlay_wrapper {
+  min-height: 100%;
 }
 
 /* main page */

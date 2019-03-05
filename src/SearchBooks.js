@@ -21,9 +21,9 @@ class SearchBooks extends Component {
     onChangeBookShelf: PropTypes.func.isRequired
   }
 
-  getShelfBook(searchBook){
+  getShelfBook(searchBook) {
     return this.props.books.find(book => {
-      return book.id === searchBook.id;
+      return book.id === searchBook.id
     });
   }
 
@@ -34,7 +34,7 @@ class SearchBooks extends Component {
         var searchBooks = result.map((searchBook) => {
           var shelfBook = this.getShelfBook(searchBook)
           if (shelfBook !== undefined) {
-            return shelfBook;
+            return shelfBook
           } else {
             searchBook['shelf'] = 'none'
             return searchBook
