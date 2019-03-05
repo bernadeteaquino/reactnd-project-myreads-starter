@@ -9,7 +9,7 @@ class ListBooks extends Component {
   }
 
   render() {
-    const { books } = this.props
+    const { books, onChangeBookShelf } = this.props
 
     const shelfStatus = [
       { key: 'currentlyReading', title: 'Currently Reading' },
@@ -32,7 +32,9 @@ class ListBooks extends Component {
                   <ol className="books-grid">
                     {this.getBooksByShelf(books, status.key).map((book) => (
                       <li key={book.id}>
-                          <Book book={book}/>
+                          <Book 
+                            book={book}
+                            onChangeBookShelf={onChangeBookShelf}/>
                       </li>
                     ))}
                   </ol>
