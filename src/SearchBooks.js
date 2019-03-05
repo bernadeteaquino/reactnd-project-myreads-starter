@@ -1,29 +1,56 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import * as BooksAPI from './BooksAPI'
+import Book from './Book'
 import './App.css'
 
 class SearchBooks extends Component {
+  state = {
+    books: [],
+    query: ''
+  }
+
+  search = (query) => {
+    BooksAPI.search(query).then((result) => {
+      var books = result && !('error' in result) ? result : []
+      this.setState(() => ({
+        books,
+        query
+      }))
+    })
+  }
+
   render() {
     return(
       <div className="search-books">
         <div className="search-books-bar">
-          <Link 
-            to="/"
-            className="close-search"
-            >Close</Link>
-          <div className="search-books-input-wrapper">
-            {/*
-            NOTES: The search from BooksAPI is limited to a particular set of search terms.
-            You can find these search terms here:
-            https://github.com/udacity/reactnd-project-myreads-starter/blob/master/SEARCH_TERMS.md
-            However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
-            you don't find a specific author or title. Every search is limited by search terms.
-            */}
-            <input type="text" placeholder="Search by title or author"/>
-          </div>
+            <Link 
+                to="/"
+                className="close-search"
+                >Close</Link>
+            <div className="search-books-input-wrapper">
+                <input 
+                    type="text"
+                    placeholder="Search by title or author"
+                    onChange={(event) => this.search(event.target.value)}/>
+            </div>
         </div>
+        
         <div className="search-books-results">
-          <ol className="books-grid"></ol>
+          {this.state.books.length > 0 && (
+            <ol className="books-grid">
+              {this.state.books.map((book) => (
+                <li key={book.id}>
+                  <Book book={book}/>
+                </li>
+              ))}
+            </ol>
+          )}
+          {this.state.query.length > 0 && this.state.books.length === 0 && (
+            <div className="no-results">
+              Nenhum resultado encontrado!
+            </div>
+          )}
         </div>
       </div>
     )
