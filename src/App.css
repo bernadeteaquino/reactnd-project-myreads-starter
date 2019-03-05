@@ -1,4 +1,6 @@
-html, body, .root {
+html,
+body,
+#root {
   height: 100%;
 }
 
@@ -6,7 +8,8 @@ body {
   line-height: 1.5;
 }
 
-body, .app {
+body,
+.app {
   background: white;
 }
 
@@ -194,6 +197,13 @@ button:active {
 .book-cover {
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   background: #eee;
+}
+
+.book-cover img {
+  max-width: 128px;
+  max-height: 193px;
+  min-width: 128px;
+  min-height: 193px;
 }
 
 .book-cover-title {
