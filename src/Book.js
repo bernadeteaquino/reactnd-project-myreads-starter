@@ -14,7 +14,7 @@ class Book extends Component {
       <div className="book">
           <div className="book-top">
           <div className="book-cover">
-              <img src={book.imageLinks? book.imageLinks.thumbnail : ''} alt={book.title}/>
+            <img src={book.imageLinks? book.imageLinks.thumbnail : require('./icons/book.svg')} alt={book.title}/>
           </div>
           <div className="book-shelf-changer">
               <select onChange={(event) => onChangeBookShelf(book, event.target.value)} value={book.shelf}>
